@@ -1,11 +1,9 @@
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-        freq = {}
         k = 0
 
         for x in nums:
-            freq[x] = freq.get(x, 0) + 1
-            if freq[x] <= 2:
+            if k < 2 or x != nums[k - 2]:
                 nums[k] = x
                 k += 1
 
