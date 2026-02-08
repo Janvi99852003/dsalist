@@ -3,26 +3,9 @@ class Solution:
         if len(s1) > len(s2):
             return False
 
-        freq1 = [0] * 26
-        freq2 = [0] * 26
-
-        # Count characters of s1
-        for ch in s1:
-            freq1[ord(ch) - ord('a')] += 1
-
-        # First window in s2
-        for i in range(len(s1)):
-            freq2[ord(s2[i]) - ord('a')] += 1
-
-        if freq1 == freq2:
-            return True
-
-        # Slide the window
-        for i in range(len(s1), len(s2)):
-            freq2[ord(s2[i]) - ord('a')] += 1          # add new char
-            freq2[ord(s2[i - len(s1)]) - ord('a')] -= 1  # remove old char
-
-            if freq1 == freq2:
+        for i in range(len(s2) - len(s1) + 1):
+            st = s2[i:i + len(s1)]
+            if Counter(st) == Counter(s1):
                 return True
 
         return False
